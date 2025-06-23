@@ -1,8 +1,11 @@
 package logger
 
 import (
+	"fmt"
 	"log"
 	"os"
+	"os/user"
+	"path/filepath"
 	"sync"
 )
 
@@ -12,11 +15,18 @@ var (
 )
 
 func getLogger() *log.Logger {
-	filename := "/home/eyvaz/Documents/lsp_log.txt"
+	filePath := "Documents/lsp_log.txt"
 
-	logfile, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
+	usr, err := user.Current()
 	if err != nil {
-		panic("oh some fuck happened")
+		panic(fmt.Sprintf("could not get the current user: %v", err))
+	}
+
+	homedir := usr.HomeDir
+
+	logfile, err := os.OpenFile(filepath.Join(homedir, filePath), os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
+	if err != nil {
+		panic("could not open the log file")
 	}
 
 	return log.New(logfile, "[educational lsp] ", log.Ldate|log.Ltime|log.Lshortfile)

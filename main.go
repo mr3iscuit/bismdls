@@ -4,9 +4,10 @@ import (
 	"bufio"
 	"os"
 
-	"github.com/mr3iscuit/bismdls/handler"
 	"github.com/mr3iscuit/bismdls/logger"
 	"github.com/mr3iscuit/bismdls/rpc"
+
+	handler "github.com/mr3iscuit/bismdls/message_handlers"
 )
 
 func main() {

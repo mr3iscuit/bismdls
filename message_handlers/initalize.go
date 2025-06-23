@@ -1,4 +1,4 @@
-package handler
+package message_handlers
 
 import (
 	"encoding/json"
@@ -32,8 +32,9 @@ func (initalize *Initialize) Handle(msg []byte) (any, error) {
 		},
 		Result: lsp.InitializeResponseResult{
 			Capabilities: lsp.ServerCapabilities{
-				TextDocumentSync: 1,
-				HoverProvider:    true,
+				TextDocumentSync:   1,
+				HoverProvider:      true,
+				DefinitionProvider: true,
 			},
 			ServerInfo: lsp.ServerInfo{
 				Name:    "bisgols",
