@@ -1,4 +1,4 @@
-BINARY_NAME=bisgols
+BINARY_NAME=bismdls
 BUILD_DIR=build/bin/
 
 build:
